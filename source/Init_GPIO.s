@@ -4,7 +4,7 @@
 
 .section .text
 
-.global
+.globl Init_GPIO
 
 // @param r0: The line number to initialize.
 // @param r1: The GPFSEL(n) which corresponds to the line.
@@ -18,17 +18,21 @@ Init_GPIO:
   // ie. (x * 3) + 2 [to account for reserved bits] => 32 - ans [the 'offset' from
   // respective edges of the register]. Finally if offset >= 0 [even GPFSEL
   // registers] than subtract 30 to adjust to the correct side of the register.
-  mul r0, #3, r5
+  mov r2, #3
+  mul r0, r2, r5
   add  r5, #2
-  subs  r5, #32, r5
+  mov r2, #32
+  subs  r5, r2, r5
 
   ble Odd_GPFSEL
     // Calculate the absolute value.
     cmp     r5, #0
+
     rsblt   r5, r5, #0
 
     // Get corrected offset.
-    sub  r5, #30, r5
+    mov r2, #30
+    sub  r5, r2, r5
     b Next
 
   Odd_GPFSEL:
