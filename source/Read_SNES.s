@@ -7,6 +7,8 @@
 .globl Read_SNES
 
 Read_SNES:
+	push {lr, r5, r6}
+
 	mov	r6, #0		//init buttons to 0
 
 	mov	r0, #1		//pass 1 to subroutine
@@ -52,8 +54,9 @@ pulseLoop:
 	add	r5, #1
 
 	cmp	r5, #16
-	blt	pulseLoop:
+	blt	pulseLoop
 
+	pop {lr, r5, r6}
 	bx 	lr
 
 
