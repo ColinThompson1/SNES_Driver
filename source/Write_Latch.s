@@ -3,7 +3,7 @@
 
 .section .text
 
-.global
+.globl Write_Latch
 
 // @param r0: The value to write.
 Write_Latch:
