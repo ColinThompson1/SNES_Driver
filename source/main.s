@@ -45,7 +45,7 @@ Begin:
 		
 		fail:
 		
-		rsl	r7, #1
+		lsr	r7, #1
 		add	r4, #1 //inc
 		cmp r4, #16
 		bge Begin
