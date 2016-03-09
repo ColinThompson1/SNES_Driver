@@ -30,11 +30,31 @@ pulseLoop:
 	b	Wait		//wait 6 useconds
 
 	mov	r0, #0		//pass 0 to subroutine
-	b 	Write_Clock
+	b 	Write_Clock	//falling edge
 	
 	mov	r0, #6
 	b	Wait		//wait 6 useconds
 
 	b	Read_Data	//read bit i
+
+	
+	lsl	r6, #1
+
+	mov	r0, #0
+	b	Write_Clock
+
+	mov	r0, #6
+	b 	Wait
+
+	mov	r0, #1
+	b	Write_Clock
+
+	add	r5, #1
+
+	cmp	r5, #16
+	blt	pulseLoop:
+
+	bx 	lr
+
 
 	
