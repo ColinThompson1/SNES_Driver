@@ -3,7 +3,7 @@
 
 .section .text
 
-.global
+.globl Read_Data
 
 Read_Data:
   push {r4, r5, r6}
