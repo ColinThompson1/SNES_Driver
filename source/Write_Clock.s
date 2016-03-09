@@ -3,10 +3,10 @@
 
 .section .text
 
-.global
+.globl Write_Clock
 
 // @param r0: The value to write.
-Write_Latch:
+Write_Clock:
   push {r4, r5, r6}
 
   mov  r4, #9                     // Pin 11
