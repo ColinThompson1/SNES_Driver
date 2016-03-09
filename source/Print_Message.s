@@ -6,7 +6,7 @@
 Print_Message:
 	push {lr}
 	mov	r1, #14		
-	cmp	r4, r1
+	cmp	r0, r1
 	bne printNames
 	ldr	r0, =button_prompt
 	mov	r1, #23
@@ -14,7 +14,7 @@ Print_Message:
 	b done
 printNames:	
 	mov r1, #13
-	cmp	r4, r1
+	cmp	r0, r1
 	bne bButton
 	ldr	r0, =names
 	mov	r1, #63
@@ -22,7 +22,7 @@ printNames:
 	b done
 bButton:
 	mov r1, #0
-	cmp	r4, r1
+	cmp	r0, r1
 	bne yButton
 	ldr	r0, =b_button
 	mov	r1, #15
@@ -31,7 +31,7 @@ bButton:
 
 yButton:
 	mov	r1,	#1
-	cmp r4, r1
+	cmp r0, r1
 	bne selButton
 	ldr	r0, =y_button
 	mov	r1, #15
@@ -39,7 +39,7 @@ yButton:
 	b done
 selButton:
 	mov	r1,	#2
-	cmp r4, r1
+	cmp r0, r1
 	bne startButton
 	ldr	r0, =select_button
 	mov	r1, #20
@@ -47,7 +47,7 @@ selButton:
 	b done
 startButton:
 	mov	r1,	#3
-	cmp r4, r1
+	cmp r0, r1
 	bne upButton
 	ldr	r0, =start_button
 	mov	r1, #23
@@ -55,7 +55,7 @@ startButton:
 	b halt
 upButton:
 	mov	r1,	#4
-	cmp r4, r1
+	cmp r0, r1
 	bne downButton
 	ldr	r0, =up_button
 	mov	r1, #16
@@ -63,7 +63,7 @@ upButton:
 	b done
 downButton:
 	mov	r1,	#5
-	cmp r4, r1
+	cmp r0, r1
 	bne leftButton
 	ldr	r0, =down_button
 	mov	r1, #18
@@ -71,7 +71,7 @@ downButton:
 	b done
 leftButton:
 	mov	r1,	#6
-	cmp r4, r1
+	cmp r0, r1
 	bne rightButton
 	ldr	r0, =left_button
 	mov	r1, #18
@@ -79,7 +79,7 @@ leftButton:
 	b done
 rightButton:
 	mov	r1,	#7
-	cmp r4, r1
+	cmp r0, r1
 	bne aButton
 	ldr	r0, =right_button
 	mov	r1, #19
@@ -87,7 +87,7 @@ rightButton:
 	b done
 aButton:
 	mov	r1,	#8
-	cmp r4, r1
+	cmp r0, r1
 	bne xButton
 	ldr	r0, =a_button
 	mov	r1, #15
@@ -95,7 +95,7 @@ aButton:
 	b done
 xButton:
 	mov	r1,	#9
-	cmp r4, r1
+	cmp r0, r1
 	bne lButton
 	ldr	r0, =x_button
 	mov	r1, #15
@@ -103,7 +103,7 @@ xButton:
 	b done
 lButton:
 	mov	r1,	#10
-	cmp r4, r1
+	cmp r0, r1
 	bne rButton
 	ldr	r0, =l_button
 	mov	r1, #15
@@ -111,7 +111,7 @@ lButton:
 	b done
 rButton:
 	mov	r1,	#11
-	cmp r4, r1
+	cmp r0, r1
 	bne done 
 	ldr	r0, =r_button
 	mov	r1, #15
