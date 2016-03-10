@@ -10,7 +10,7 @@
 // @param r1: The GPFSEL(n) which corresponds to the line.
 Init_GPIO:
 
-  push {r4, r5, r6, r7}
+  push {r4, r5, r6, r7, r8}
   ldr  r4, [r1]                 // GPFSEL(n)
   mov  r6, #7                   // b0111
 
@@ -58,4 +58,5 @@ Init_GPIO:
   // return to the calling code.
   writeBack:
     str  r4, [r1]
+    pop {r4, r5, r6, r7, r8}
     bx lr
