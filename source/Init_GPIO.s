@@ -18,8 +18,8 @@ Init_GPIO:
   // ie. (x * 3) + 2 [to account for reserved bits] => 32 - ans [the 'offset' from
   // respective edges of the register]. Finally if offset >= 0 [even GPFSEL
   // registers] than subtract 30 to adjust to the correct side of the register.
-  mov r2, #3
-  mul r0, r2, r5
+  mov r8, #3
+  mul r5, r8, r0
   add  r5, #2
   mov r2, #32
   subs  r5, r2, r5
