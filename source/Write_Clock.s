@@ -7,16 +7,12 @@
 
 // @param r0: The value to write.
 Write_Clock:
-  push {r4, r5, r6}
-
-  mov  r4, #9                     // Pin 11
-  ldr  r5, =0x20200000            // Base GPIO
-  mov  r6, #1                     // bit mask
-  lsl r6, r4                      // Shift bit mask
-  teq r0, #0                      // Test value of input
-  streq r6, [r5, #40]             // GPCLR0
-  strne r6, [r5, #28]             // GPSET0
-
-  // Return to calling code.
-  pop {r4, r5, r6}
-  bx  lr
+	push {r1, r2, r3}
+	ldr r2, =0x20200000 //Base GPIO reg
+	mov r3, #1 //0b001
+	lsl r3, #11 //align for appropriate pin
+	teq r1, #0
+	streq r3, [r2, #40] //GPCLR0
+	strne r3, [r2, #28] //GPSET0
+	pop {r1, r2, r3}
+	bx lr
