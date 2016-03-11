@@ -1,0 +1,197 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/Init_GPIO.o
+LOAD build/Read_Data.o
+LOAD build/jtag.o
+LOAD build/Write_Clock.o
+LOAD build/main.o
+LOAD build/Read_SNES.o
+LOAD build/Print_Message.o
+LOAD build/Wait.o
+LOAD build/Write_Latch.o
+LOAD uart.o
+LOAD gpio.o
+
+.init           0x00008000        0x4
+ *(.init)
+ .init          0x00008000        0x4 build/main.o
+                0x00008000                _start
+
+.data           0x00009080      0x129
+ *(.data)
+ .data          0x00009080        0x0 build/Init_GPIO.o
+ .data          0x00009080        0x0 build/Read_Data.o
+ .data          0x00009080        0x0 build/jtag.o
+ .data          0x00009080        0x0 build/Write_Clock.o
+ .data          0x00009080        0x0 build/main.o
+ .data          0x00009080        0x0 build/Read_SNES.o
+ .data          0x00009080      0x129 build/Print_Message.o
+ .data          0x000091a9        0x0 build/Wait.o
+ .data          0x000091a9        0x0 build/Write_Latch.o
+ .data          0x000091a9        0x0 uart.o
+ .data          0x000091a9        0x0 gpio.o
+ *.c.o(*)
+
+.igot.plt       0x000091ac        0x0
+ .igot.plt      0x00000000        0x0 build/Init_GPIO.o
+
+.text           0x000091ac      0x6fc
+ *.c.o(.text)
+ *(.text)
+ .text          0x000091ac       0x94 build/Init_GPIO.o
+                0x000091ac                Init_GPIO
+ .text          0x00009240       0x30 build/Read_Data.o
+                0x00009240                Read_Data
+ .text          0x00009270       0x8c build/jtag.o
+                0x00009270                EnableJTAG
+ .text          0x000092fc       0x28 build/Write_Clock.o
+                0x000092fc                Write_Clock
+ .text          0x00009324       0x94 build/main.o
+ .text          0x000093b8       0x7c build/Read_SNES.o
+                0x000093b8                Read_SNES
+ .text          0x00009434      0x194 build/Print_Message.o
+                0x00009434                Print_Message
+ .text          0x000095c8       0x2c build/Wait.o
+                0x000095c8                Wait
+ .text          0x000095f4       0x28 build/Write_Latch.o
+                0x000095f4                Write_Latch
+ .text          0x0000961c      0x1b4 uart.o
+                0x0000961c                InitUART
+                0x000096dc                PutCharUART
+                0x000096f8                GetCharUART
+                0x00009714                WriteStringUART
+                0x00009740                ReadLineUART
+ .text          0x000097d0       0xd8 gpio.o
+                0x000097d0                GetGpioAddress
+                0x000097d8                SetGpioFunction
+                0x00009824                SetGpio
+                0x00009860                GetGpio
+OUTPUT(build/output.elf elf32-littlearm)
+
+.glue_7         0x000098a8        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000098a8        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000098a8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000098a8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000098a8        0x0
+ .iplt          0x00000000        0x0 build/Init_GPIO.o
+
+.rel.dyn        0x000098a8        0x0
+ .rel.iplt      0x00000000        0x0 build/Init_GPIO.o
+
+.bss            0x000098a8        0x0
+ .bss           0x000098a8        0x0 build/Init_GPIO.o
+ .bss           0x000098a8        0x0 build/Read_Data.o
+ .bss           0x000098a8        0x0 build/jtag.o
+ .bss           0x000098a8        0x0 build/Write_Clock.o
+ .bss           0x000098a8        0x0 build/main.o
+ .bss           0x000098a8        0x0 build/Read_SNES.o
+ .bss           0x000098a8        0x0 build/Print_Message.o
+ .bss           0x000098a8        0x0 build/Wait.o
+ .bss           0x000098a8        0x0 build/Write_Latch.o
+ .bss           0x000098a8        0x0 uart.o
+ .bss           0x000098a8        0x0 gpio.o
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x26 build/Init_GPIO.o
+ .ARM.attributes
+                0x00000026       0x26 build/Read_Data.o
+ .ARM.attributes
+                0x0000004c       0x26 build/jtag.o
+ .ARM.attributes
+                0x00000072       0x26 build/Write_Clock.o
+ .ARM.attributes
+                0x00000098       0x26 build/main.o
+ .ARM.attributes
+                0x000000be       0x26 build/Read_SNES.o
+ .ARM.attributes
+                0x000000e4       0x26 build/Print_Message.o
+ .ARM.attributes
+                0x0000010a       0x26 build/Wait.o
+ .ARM.attributes
+                0x00000130       0x26 build/Write_Latch.o
+ .ARM.attributes
+                0x00000156       0x26 uart.o
+ .ARM.attributes
+                0x0000017c       0x26 gpio.o
+
+.debug_line     0x00000000      0x4a9
+ .debug_line    0x00000000       0x68 build/Init_GPIO.o
+ .debug_line    0x00000068       0x4d build/Read_Data.o
+ .debug_line    0x000000b5       0x61 build/jtag.o
+ .debug_line    0x00000116       0x4f build/Write_Clock.o
+ .debug_line    0x00000165       0x74 build/main.o
+ .debug_line    0x000001d9       0x60 build/Read_SNES.o
+ .debug_line    0x00000239       0xab build/Print_Message.o
+ .debug_line    0x000002e4       0x47 build/Wait.o
+ .debug_line    0x0000032b       0x4f build/Write_Latch.o
+ .debug_line    0x0000037a       0xb6 uart.o
+ .debug_line    0x00000430       0x79 gpio.o
+
+.debug_info     0x00000000      0x499
+ .debug_info    0x00000000       0x6e build/Init_GPIO.o
+ .debug_info    0x0000006e       0x6e build/Read_Data.o
+ .debug_info    0x000000dc       0x69 build/jtag.o
+ .debug_info    0x00000145       0x70 build/Write_Clock.o
+ .debug_info    0x000001b5       0x65 build/main.o
+ .debug_info    0x0000021a       0x6e build/Read_SNES.o
+ .debug_info    0x00000288       0x72 build/Print_Message.o
+ .debug_info    0x000002fa       0x69 build/Wait.o
+ .debug_info    0x00000363       0x70 build/Write_Latch.o
+ .debug_info    0x000003d3       0x63 uart.o
+ .debug_info    0x00000436       0x63 gpio.o
+
+.debug_abbrev   0x00000000       0xda
+ .debug_abbrev  0x00000000       0x14 build/Init_GPIO.o
+ .debug_abbrev  0x00000014       0x14 build/Read_Data.o
+ .debug_abbrev  0x00000028       0x14 build/jtag.o
+ .debug_abbrev  0x0000003c       0x14 build/Write_Clock.o
+ .debug_abbrev  0x00000050       0x12 build/main.o
+ .debug_abbrev  0x00000062       0x14 build/Read_SNES.o
+ .debug_abbrev  0x00000076       0x14 build/Print_Message.o
+ .debug_abbrev  0x0000008a       0x14 build/Wait.o
+ .debug_abbrev  0x0000009e       0x14 build/Write_Latch.o
+ .debug_abbrev  0x000000b2       0x14 uart.o
+ .debug_abbrev  0x000000c6       0x14 gpio.o
+
+.debug_aranges  0x00000000      0x168
+ .debug_aranges
+                0x00000000       0x20 build/Init_GPIO.o
+ .debug_aranges
+                0x00000020       0x20 build/Read_Data.o
+ .debug_aranges
+                0x00000040       0x20 build/jtag.o
+ .debug_aranges
+                0x00000060       0x20 build/Write_Clock.o
+ .debug_aranges
+                0x00000080       0x28 build/main.o
+ .debug_aranges
+                0x000000a8       0x20 build/Read_SNES.o
+ .debug_aranges
+                0x000000c8       0x20 build/Print_Message.o
+ .debug_aranges
+                0x000000e8       0x20 build/Wait.o
+ .debug_aranges
+                0x00000108       0x20 build/Write_Latch.o
+ .debug_aranges
+                0x00000128       0x20 uart.o
+ .debug_aranges
+                0x00000148       0x20 gpio.o
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 build/main.o
